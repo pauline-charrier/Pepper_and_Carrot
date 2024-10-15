@@ -16,7 +16,7 @@ Le dossier zip sera placé au niveau du répertoire d'où est exécuté le scrip
 
 Lancer le script depuis la ligne de commande : "python3 extraction_corpus_pepper_carrot.py".
 
-L'utilisateur est amené à entrer manuellement le nom d'un épisode de Pepper&Carrot en anglais, en respectant les majuscules et en remplaçant les espaces par des tirets ("-"), ainsi que le numéro d'épisode correspondant à ce titre.
+L'utilisateur est invité à entrer manuellement le nom d'un épisode de Pepper&Carrot en anglais (en respectant strictement les majuscules) ainsi que le numéro d'épisode correspondant à ce titre.
 
 '''
 
@@ -28,6 +28,10 @@ import shutil
 from xml.etree import ElementTree as ET
 from itertools import zip_longest
 import sys
+
+def nettoyer_titre(titre: str):
+    # Nettoyer le titre saisi par l'utilisateur (suppression du potentiel espace final, transformation des espaces en tirets)
+    return titre.strip().replace(" ", "-")
 
 def chercher_episode(titre: str, numero_episode: str):
     # Ajouter un zéro pour les numéros inférieurs à 10 si l'utilisateur ne l'a pas fait
@@ -173,8 +177,12 @@ def creer_zip_fichiers_alignes(numero_episode, fichiers_csv_alignes):
 
 def main():
     # Formulaire destiné à l'utilisateur
-    titre = input("Entrez le titre de l'épisode en anglais (avec des tirets à la place des espaces et en respectant les majuscules !) : ")
+    titre = input("Entrez le titre de l'épisode en anglais en respectant strictement la casse : ")
     numero_episode = input("Entrez le numéro de l'épisode : ")
+
+    # Nettoyer le titre saisi par l'utilisateur
+    titre = nettoyer_titre(titre)
+    print(f"Le titre de l'épisode téléchargé est : {titre}")
     
     # Téléchargement et extraction des fichiers
     dossier_extrait = chercher_episode(titre, numero_episode)
@@ -223,7 +231,7 @@ def main():
     try:
         csv_occitan = [f for f in fichiers_csv_finaux if f.startswith("oc_")][0]
     except IndexError:
-        print("Erreur : il n'y a pas encore de traduction en Occitan disponible pour cet épisode.")
+        print("Erreur : il n'y a pas encore de traduction en occitan disponible pour cet épisode.")
         erreur_survenue = True
         for fichier_csv in fichiers_csv_finaux:
             if os.path.exists(fichier_csv):
