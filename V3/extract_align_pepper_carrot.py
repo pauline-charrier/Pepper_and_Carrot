@@ -47,8 +47,8 @@ correspondances = {
 }
 
 def nettoyer_titre(titre: str):
-    # nettoyage du titre saisi par l'utilisateur (suppression du potentiel espace final, transformation espaces en tirets)
-    return titre.strip().replace(" ", "-")
+    # nettoyage du titre saisi par l'utilisateur (suppression du potentiel espace final, transformation espaces et apostrophes en tirets)
+    return titre.strip().replace(" ", "-").replace("'","-") 
     
 ################# TELECHARGEMENT DU ZIP ############################
 
@@ -397,7 +397,7 @@ def main():
     try:
         csv_occitan = [f for f in fichiers_csv_finaux if f.startswith("oc_")][0]
     except IndexError:
-        print("\nErreur : il n'y a pas encore de traduction en occitan disponible pour cet épisode. \nLe script va être interrompu et ne va pas retourner de résultats.")        
+        print("\nErreur : il n'y a pas encore de traduction en occitan disponible pour cet épisode. \nLe script va être interrompu et ne va pas retourner de résultats.\n")        
         for fichier_csv in fichiers_csv_finaux:
             if os.path.exists(fichier_csv):
                 os.remove(fichier_csv) # supprimer les fichiers produits précédemment (éviter l'encombrement)                
@@ -449,7 +449,7 @@ def main():
         # Créer un fichier ZIP avec tous les fichiers alignés
         fichier_zip_final_ga = creer_zip_fichiers_alignes_ga(numero_episode, fichiers_valides_ga)
     else:
-        print("\nErreur : il n'y a pas encore de traduction en gascon disponible pour cet épisode. \nLe script ne retournera pas de corpus alignés bilingue pour le gascon, ni de corpus bivariété pour le gascon et le languedocien.")    
+        print("\nErreur : il n'y a pas encore de traduction en gascon disponible pour cet épisode. \nLe script ne retournera pas de corpus aligné bilingue pour le gascon, ni de corpus bivariété pour le gascon et le languedocien.")    
 
     ############### PREPARATION SORTIE DE SCRIPT #################
 
