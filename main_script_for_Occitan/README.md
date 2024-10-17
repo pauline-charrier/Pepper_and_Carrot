@@ -12,9 +12,9 @@ Les dossiers zip retournés en sortie seront placés dans le même répertoire q
 
 Pour exécuter le script :   
 1) se placer en ligne de commande à l'emplacement du répertoire parent du script (`cd [repertoire_parent]`...)
-2) créer un environnement virtuel (recommandé) : 
+2) créer un environnement virtuel (optionnel) : 
 - sur Windows :  
-    - `python -m venv env`  
+    - `python3 -m venv env`  
     - `env\Scripts\activate`   
     - `pip install requests`  
 - sur Linux :
