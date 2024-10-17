@@ -14,7 +14,7 @@ Pour exécuter le script :
 1) se placer en ligne de commande à l'emplacement du répertoire parent du script (`cd [repertoire_parent]`...)
 2) créer un environnement virtuel (optionnel) : 
 - sur Windows :  
-    - `python3 -m venv env`  
+    - `python -m venv env`  
     - `env\Scripts\activate`   
     - `pip install requests`  
 - sur Linux :
@@ -26,4 +26,7 @@ Pour exécuter le script :
 5) Saisir le numéro de l'épisode en chiffres arabes  
 
 Pour interrompre le script :   
-    - en ligne de commande : `CTRL`+`Z`  
+	- en ligne de commande : `CTRL`+`Z` 
+
+Pour quitter l'environnement virtuel : 
+	- en ligne de commande  `deactivate`
