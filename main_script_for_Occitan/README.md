@@ -28,5 +28,5 @@ Pour exécuter le script :
 Pour interrompre le script :   
 	- en ligne de commande : `CTRL`+`Z` 
 
-Pour quitter l'environnement virtuel : 
+Pour quitter l'environnement virtuel :   
 	- en ligne de commande  `deactivate`
